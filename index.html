@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PearlThoughts | Schedule Project Module ER Diagram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #111827;
+      --bg-card: rgba(17, 24, 39, 0.75);
+      --bg-card-hover: rgba(31, 41, 55, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-highlight: #3b82f6;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --accent-blue: #38bdf8;
+      --accent-purple: #a855f7;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(17, 24, 39, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .logo-badge {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #0284c7, #6366f1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      color: #fff;
+      font-size: 1.2rem;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .brand-text h1 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .btn-loom {
+      background: linear-gradient(135deg, #625df5, #8b5cf6);
+      color: white;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    }
+
+    .btn-loom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding: 1.5rem 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent-blue);
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Modules Stepper Bar */
+    .module-nav {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .module-tab {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-tab:hover, .module-tab.active {
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .module-tab.active {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+    }
+
+    .module-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+
+    .module-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .module-entities {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ER Diagram Canvas Container */
+    .diagram-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .diagram-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .diagram-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .diagram-controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s;
+    }
+
+    .ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .mermaid-wrapper {
+      overflow-x: auto;
+      background: #0d131f;
+      border-radius: 12px;
+      padding: 1.5rem;
+      min-height: 450px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mermaid-wrapper svg {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+
+    /* Interactive Architecture Flow View */
+    .view-switcher {
+      display: flex;
+      gap: 0.4rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.25rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .view-btn {
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+
+    .visual-flow-wrapper {
+      background: radial-gradient(circle at 50% 20%, rgba(30, 41, 59, 0.6) 0%, #090d16 100%);
+      border-radius: 14px;
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.6rem;
+      position: relative;
+      border: 1px solid var(--border-color);
+    }
+
+    .flow-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      width: 100%;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .flow-node {
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(8px);
+      border: 2px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.2rem;
+      width: 290px;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .flow-node:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .flow-node.mod-1 { border-color: var(--accent-blue); box-shadow: 0 0 25px rgba(56, 189, 248, 0.25); }
+    .flow-node.mod-2 { border-color: var(--accent-emerald); box-shadow: 0 0 25px rgba(16, 185, 129, 0.25); }
+    .flow-node.mod-3 { border-color: var(--accent-purple); box-shadow: 0 0 25px rgba(168, 85, 247, 0.25); }
+    .flow-node.mod-4 { border-color: var(--accent-amber); box-shadow: 0 0 25px rgba(245, 158, 11, 0.25); }
+    .flow-node.mod-5 { border-color: var(--accent-rose); box-shadow: 0 0 30px rgba(244, 63, 94, 0.3); }
+
+    .node-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    .node-badge.b-blue { background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); }
+    .node-badge.b-green { background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); }
+    .node-badge.b-purple { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+    .node-badge.b-amber { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); }
+    .node-badge.b-rose { background: rgba(244, 63, 94, 0.2); color: var(--accent-rose); }
+
+    .node-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .node-fields {
+      list-style: none;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .node-fields li {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .node-fields li::before {
+      content: "•";
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    .connector-pill {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 20px;
+      padding: 0.35rem 0.9rem;
+      font-family: var(--font-code);
+      font-size: 0.78rem;
+      color: var(--accent-blue);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Detailed Entity Grid */
+    .entities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .entity-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .entity-card:hover {
+      border-color: rgba(56, 189, 248, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .entity-card-header {
+      padding: 1rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .entity-card-header.mod-1 { background: linear-gradient(90deg, rgba(56, 189, 248, 0.15), transparent); border-left: 4px solid var(--accent-blue); }
+    .entity-card-header.mod-2 { background: linear-gradient(90deg, rgba(16, 185, 129, 0.15), transparent); border-left: 4px solid var(--accent-emerald); }
+    .entity-card-header.mod-3 { background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), transparent); border-left: 4px solid var(--accent-purple); }
+    .entity-card-header.mod-4 { background: linear-gradient(90deg, rgba(245, 158, 11, 0.15), transparent); border-left: 4px solid var(--accent-amber); }
+    .entity-card-header.mod-5 { background: linear-gradient(90deg, rgba(244, 63, 94, 0.15), transparent); border-left: 4px solid var(--accent-rose); }
+
+    .entity-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .entity-tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .entity-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .entity-table th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .entity-table td {
+      padding: 0.55rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .field-name {
+      font-family: var(--font-code);
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .badge-pk {
+      display: inline-block;
+      font-size: 0.62rem;
+      background: #dc2626;
+      color: white;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-weight: 700;
+      margin-left: 0.3rem;
+    }
+
+    .badge-fk {
+      display: inline-block;
+      font-size: 0.62rem;
+      background: #2563eb;
+      color: white;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-weight: 700;
+      margin-left: 0.3rem;
+    }
+
+    .badge-unique {
+      display: inline-block;
+      font-size: 0.62rem;
+      background: #059669;
+      color: white;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      font-weight: 700;
+      margin-left: 0.3rem;
+    }
+
+    .field-type {
+      font-family: var(--font-code);
+      color: #93c5fd;
+      font-size: 0.78rem;
+    }
+
+    .field-desc {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    /* Relationships & Cardinalities Table */
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .cardinality-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .cardinality-table th {
+      text-align: left;
+      padding: 0.8rem 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cardinality-table td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .cardinality-tag {
+      font-family: var(--font-code);
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      display: inline-block;
+    }
+
+    /* Floating Loom Teleprompter Drawer */
+    .teleprompter-drawer {
+      position: fixed;
+      right: -450px;
+      top: 0;
+      width: 440px;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(20px);
+      border-left: 1px solid var(--border-color);
+      z-index: 100;
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+      transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .teleprompter-drawer.open {
+      right: 0;
+    }
+
+    .teleprompter-header {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .teleprompter-header h4 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .close-drawer-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .teleprompter-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #cbd5e1;
+    }
+
+    .script-section {
+      margin-bottom: 1.8rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      padding: 1rem;
+      border-left: 3px solid var(--accent-blue);
+    }
+
+    .script-section.warning {
+      border-left-color: var(--accent-amber);
+    }
+
+    .script-time {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--accent-blue);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .script-cue {
+      font-size: 0.8rem;
+      color: var(--accent-amber);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .script-text {
+      color: #f1f5f9;
+      font-weight: 400;
+    }
+
+    .script-text b {
+      color: #38bdf8;
+    }
+
+    /* Modal / Tab Switcher for Code & Spec */
+    .tab-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.8rem;
+    }
+
+    .tab-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.3);
+      color: var(--accent-blue);
+    }
+
+    pre code {
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      background: #090d16;
+      display: block;
+      padding: 1.2rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+    }
+
+    .copy-code-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .copy-code-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .module-nav {
+        grid-template-columns: 1fr;
+      }
+      .entities-grid {
+        grid-template-columns: 1fr;
+      }
+      .teleprompter-drawer {
+        width: 100%;
+        right: -100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <header>
+    <div class="nav-container">
+      <div class="brand">
+        <div class="logo-badge">PT</div>
+        <div class="brand-text">
+          <h1>PearlThoughts Internship</h1>
+          <p>Schedule Project Module &bull; Database ER Design</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-loom" id="openTeleprompterBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+          </svg>
+          Loom Video Script
+        </button>
+        <button class="btn btn-outline" id="copySqlBtn">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Copy SQL Schema
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-badge">Verified Submission &bull; 3NF Relational Architecture</div>
+      <h2>Schedule Project Module ER Diagram</h2>
+      <p>A simple, clear, and comprehensive entity-relationship architecture covering Authentication, Patient Profiles, Doctor Discovery, Availability Slots, and Appointment Booking with Reschedule Tracking.</p>
+    </section>
+
+    <!-- Ordered Modules Navigation (User, Patient, Doctor, Availability, Appointment) -->
+    <nav class="module-nav" id="moduleNav">
+      <div class="module-tab active" data-mod="all">
+        <div class="module-num">Overview</div>
+        <div class="module-name">All 5 Modules</div>
+        <div class="module-entities">8 Connected Entities</div>
+      </div>
+      <div class="module-tab" data-mod="1">
+        <div class="module-num">Module 01</div>
+        <div class="module-name">User Module</div>
+        <div class="module-entities">Users, Verifications</div>
+      </div>
+      <div class="module-tab" data-mod="2">
+        <div class="module-num">Module 02</div>
+        <div class="module-name">Patient Module</div>
+        <div class="module-entities">Patient Demographics</div>
+      </div>
+      <div class="module-tab" data-mod="3">
+        <div class="module-num">Module 03</div>
+        <div class="module-name">Doctor Module</div>
+        <div class="module-entities">Specialty, Ratings, Fees</div>
+      </div>
+      <div class="module-tab" data-mod="4">
+        <div class="module-num">Module 04</div>
+        <div class="module-name">Availability Module</div>
+        <div class="module-entities">Slots &bull; Time Units</div>
+      </div>
+      <div class="module-tab" data-mod="5">
+        <div class="module-num">Module 05</div>
+        <div class="module-name">Appointment Module</div>
+        <div class="module-entities">Bookings, History, Alerts</div>
+      </div>
+    </nav>
+
+    <!-- Visual ER Diagram Section -->
+    <section class="diagram-section">
+      <div class="diagram-header">
+        <h3>
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <path d="M3 9h18M9 21V9"></path>
+          </svg>
+          System Architecture & ER Diagram
+        </h3>
+        <div class="diagram-controls">
+          <div class="view-switcher">
+            <button class="view-btn active" id="viewFlowBtn">⚡ Visual Architecture Flow</button>
+            <button class="view-btn" id="viewMermaidBtn">📊 Database ERD Tables</button>
+          </div>
+          <button class="ctrl-btn" id="zoomInBtn">+ Zoom In</button>
+          <button class="ctrl-btn" id="zoomOutBtn">- Zoom Out</button>
+          <button class="ctrl-btn" id="resetZoomBtn">Reset View</button>
+        </div>
+      </div>
+
+      <!-- View 1: High-Impact Visual Flow Architecture (Perfect for Screen Recording) -->
+      <div class="visual-flow-wrapper" id="visualFlowWrapper">
+        
+        <!-- Level 1: User Module -->
+        <div class="flow-row">
+          <div class="flow-node mod-1">
+            <span class="node-badge b-blue">Module 01 &bull; Central Identity</span>
+            <div class="node-title">USERS & VERIFICATIONS</div>
+            <ul class="node-fields">
+              <li><b>user_id</b> (PK, UUID)</li>
+              <li><b>email</b> (Unique login)</li>
+              <li><b>auth_provider</b> (LOCAL / GOOGLE OAuth)</li>
+              <li><b>role</b> (PATIENT / DOCTOR)</li>
+              <li><b>USER_VERIFICATIONS</b> (OTP codes, 1:N)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Connector Pills -->
+        <div class="connector-pill">
+          <span>&darr; Extends via 1 : 1 Unique Foreign Key &darr;</span>
+        </div>
+
+        <!-- Level 2: Profiles Split (Patient & Doctor) -->
+        <div class="flow-row">
+          <div class="flow-node mod-2">
+            <span class="node-badge b-green">Module 02 &bull; Healthcare Profile</span>
+            <div class="node-title">PATIENTS (1:1)</div>
+            <ul class="node-fields">
+              <li><b>patient_id</b> (PK, UUID)</li>
+              <li><b>user_id</b> (FK &bull; 1:1 with USERS)</li>
+              <li><b>first_name, last_name</b></li>
+              <li><b>date_of_birth, gender</b></li>
+              <li><b>blood_group, emergency_contact</b></li>
+            </ul>
+          </div>
+
+          <div class="flow-node mod-3">
+            <span class="node-badge b-purple">Module 03 &bull; Clinical Credentials</span>
+            <div class="node-title">DOCTORS (1:1)</div>
+            <ul class="node-fields">
+              <li><b>doctor_id</b> (PK, UUID)</li>
+              <li><b>user_id</b> (FK &bull; 1:1 with USERS)</li>
+              <li><b>specialization</b> (Cardiology, etc.)</li>
+              <li><b>consultation_fee, qualification</b></li>
+              <li><b>rating_avg, total_reviews</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Connector: Doctor to Availability -->
+        <div class="connector-pill">
+          <span>&darr; Doctor Configures Availability &darr;</span>
+        </div>
+
+        <!-- Level 3: Availability Module (Slot 1:N Time) -->
+        <div class="flow-row">
+          <div class="flow-node mod-4">
+            <span class="node-badge b-amber">Module 04 &bull; Parent Shift Block</span>
+            <div class="node-title">AVAILABILITY SLOTS (1:N)</div>
+            <ul class="node-fields">
+              <li><b>slot_id</b> (PK, UUID)</li>
+              <li><b>doctor_id</b> (FK &bull; Doctor ↔ Slot: 1:N)</li>
+              <li><b>slot_date</b> (Calendar date)</li>
+              <li><b>start_time &bull; end_time</b> (Shift window)</li>
+              <li><b>slot_duration_minutes</b> (30 mins)</li>
+            </ul>
+          </div>
+
+          <div style="color: var(--accent-amber); font-weight: 800; font-size: 1.5rem;">&rarr; 1:N &rarr;</div>
+
+          <div class="flow-node mod-4">
+            <span class="node-badge b-amber">Module 04 &bull; Granular Bookable Units</span>
+            <div class="node-title">TIME SLOTS (1:N)</div>
+            <ul class="node-fields">
+              <li><b>time_id</b> (PK, UUID)</li>
+              <li><b>slot_id</b> (FK &bull; Slot ↔ Time: 1:N)</li>
+              <li><b>start_time &bull; end_time</b> (e.g. 09:00 - 09:30)</li>
+              <li><b>status</b> (AVAILABLE, BOOKED, RESERVED)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Connector: Convergence into Appointment -->
+        <div class="connector-pill" style="border-color: rgba(244, 63, 94, 0.5); color: #fda4af;">
+          <span>&darr; Patient (N:1) + Doctor (N:1) + TimeSlot (Unique 1:1 Lock) &darr;</span>
+        </div>
+
+        <!-- Level 4: Appointment Core Module -->
+        <div class="flow-row">
+          <div class="flow-node mod-5" style="width: 380px;">
+            <span class="node-badge b-rose">Module 05 &bull; Core Booking Engine</span>
+            <div class="node-title">APPOINTMENTS</div>
+            <ul class="node-fields">
+              <li><b>appointment_id</b> (PK, UUID)</li>
+              <li><b>patient_id</b> (FK &bull; N:1 with Patients)</li>
+              <li><b>doctor_id</b> (FK &bull; N:1 with Doctors)</li>
+              <li><b>time_id</b> (FK &bull; <span style="color:#f43f5e; font-weight:bold;">Unique 1:1 Lock &bull; Zero Double-Booking</span>)</li>
+              <li><b>appointment_date, status</b> (CONFIRMED, CANCELLED)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Level 5: Reschedule History & Notifications -->
+        <div class="flow-row">
+          <div class="flow-node mod-5" style="width: 310px;">
+            <span class="node-badge b-rose">Module 05 &bull; Week 3 Audit</span>
+            <div class="node-title">RESCHEDULE HISTORIES (1:N)</div>
+            <ul class="node-fields">
+              <li><b>reschedule_id</b> (PK, UUID)</li>
+              <li><b>appointment_id</b> (FK &bull; 1:N)</li>
+              <li><b>old_time_id &bull; new_time_id</b></li>
+              <li><b>reschedule_reason, rescheduled_by</b></li>
+            </ul>
+          </div>
+
+          <div class="flow-node mod-5" style="width: 310px;">
+            <span class="node-badge b-rose">Module 05 &bull; System Alerts</span>
+            <div class="node-title">NOTIFICATIONS (1:N)</div>
+            <ul class="node-fields">
+              <li><b>notification_id</b> (PK, UUID)</li>
+              <li><b>user_id &bull; appointment_id</b></li>
+              <li><b>message</b>: "Your appt with Dr. XYZ is confirmed"</li>
+              <li><b>type</b> (CONFIRMATION, REMINDER)</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- View 2: Detailed Mermaid ERD Tables -->
+      <div class="mermaid-wrapper" id="mermaidWrapper" style="display: none;">
+        <div class="mermaid" id="erMermaid">
+erDiagram
+    USERS ||--o| PATIENTS : "extends 1:1"
+    USERS ||--o| DOCTORS : "extends 1:1"
+    USERS ||--o{ USER_VERIFICATIONS : "authenticates 1:N"
+    USERS ||--o{ NOTIFICATIONS : "receives 1:N"
+
+    PATIENTS ||--o{ APPOINTMENTS : "books 1:N"
+    DOCTORS ||--o{ DOCTOR_AVAILABILITY_SLOTS : "schedules 1:N"
+    DOCTORS ||--o{ APPOINTMENTS : "conducts 1:N"
+
+    DOCTOR_AVAILABILITY_SLOTS ||--|{ TIME_SLOTS : "segments 1:N"
+    TIME_SLOTS ||--o| APPOINTMENTS : "locks 1:1"
+    APPOINTMENTS ||--o{ RESCHEDULE_HISTORIES : "tracks 1:N"
+    APPOINTMENTS ||--o{ NOTIFICATIONS : "triggers 1:N"
+
+    USERS {
+        uuid user_id PK
+        string email UK
+        string phone
+        string password_hash
+        string role
+        string auth_provider
+        string google_id UK
+        boolean is_verified
+        string status
+    }
+    USER_VERIFICATIONS {
+        uuid verification_id PK
+        uuid user_id FK
+        string otp_code
+        string token_type
+        timestamp expires_at
+        boolean is_used
+    }
+    PATIENTS {
+        uuid patient_id PK
+        uuid user_id FK "Unique 1:1"
+        string first_name
+        string last_name
+        date date_of_birth
+        string gender
+        string blood_group
+        string emergency_contact
+    }
+    DOCTORS {
+        uuid doctor_id PK
+        uuid user_id FK "Unique 1:1"
+        string first_name
+        string last_name
+        string specialization
+        string qualification
+        int experience_years
+        decimal consultation_fee
+        decimal rating_avg
+    }
+    DOCTOR_AVAILABILITY_SLOTS {
+        uuid slot_id PK
+        uuid doctor_id FK
+        date slot_date
+        time start_time
+        time end_time
+        int slot_duration_minutes
+    }
+    TIME_SLOTS {
+        uuid time_id PK
+        uuid slot_id FK
+        time start_time
+        time end_time
+        string status
+    }
+    APPOINTMENTS {
+        uuid appointment_id PK
+        uuid patient_id FK
+        uuid doctor_id FK
+        uuid time_id FK "Unique 1:1"
+        date appointment_date
+        string status
+        string reason_for_visit
+    }
+    RESCHEDULE_HISTORIES {
+        uuid reschedule_id PK
+        uuid appointment_id FK
+        uuid old_time_id FK
+        uuid new_time_id FK
+        string reschedule_reason
+        string rescheduled_by
+        timestamp rescheduled_at
+    }
+    NOTIFICATIONS {
+        uuid notification_id PK
+        uuid user_id FK
+        uuid appointment_id FK
+        string type
+        string message
+        boolean is_read
+    }
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Entity Cards (Module by Module) -->
+    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.2rem;">
+      Entities & Attributes Dictionary
+    </h3>
+
+    <div class="entities-grid" id="entitiesGrid">
+      
+      <!-- Module 1: Users -->
+      <div class="entity-card" data-module="1">
+        <div class="entity-card-header mod-1">
+          <div class="entity-title">USERS</div>
+          <span class="entity-tag">Module 1: User</span>
+        </div>
+        <table class="entity-table">
+          <thead>
+            <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="field-name">user_id</span><span class="badge-pk">PK</span></td><td class="field-type">UUID</td><td class="field-desc">Unique identifier</td></tr>
+            <tr><td><span class="field-name">email</span><span class="badge-unique">UK</span></td><td class="field-type">VARCHAR</td><td class="field-desc">Unique login email</td></tr>
+            <tr><td><span class="field-name">role</span></td><td class="field-type">ENUM</td><td class="field-desc">'PATIENT' | 'DOCTOR' | 'ADMIN'</td></tr>
+            <tr><td><span class="field-name">auth_provider</span></td><td class="field-type">ENUM</td><td class="field-desc">'LOCAL' | 'GOOGLE' (OAuth)</td></tr>
+            <tr><td><span class="field-name">google_id</span><span class="badge-unique">UK</span></td><td class="field-type">VARCHAR</td><td class="field-desc">Google OAuth subject ID</td></tr>
+            <tr><td><span class="field-name">is_verified</span></td><td class="field-type">BOOLEAN</td><td class="field-desc">Email / OTP verified</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Module 1: Verifications -->
+      <div class="entity-card" data-module="1">
+        <div class="entity-card-header mod-1">
+          <div class="entity-title">USER_VERIFICATIONS</div>
+          <span class="entity-tag">Module 1: User</span>
+        </div>
+        <table class="entity-table">
+          <thead>
+            <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="field-name">verification_id</span><span class="badge-pk">PK</span></td><td class="field-type">UUID</td><td class="field-desc">Unique identifier</td></tr>
+            <tr><td><span class="field-name">user_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">References USERS</td></tr>
+            <tr><td><span class="field-name">otp_code</span></td><td class="field-type">VARCHAR(6)</td><td class="field-desc">One-time security code</td></tr>
+            <tr><td><span class="field-name">token_type</span></td><td class="field-type">ENUM</td><td class="field-desc">'REGISTRATION' | 'LOGIN'</td></tr>
+            <tr><td><span class="field-name">expires_at</span></td><td class="field-type">TIMESTAMP</td><td class="field-desc">TTL expiration stamp</td></tr>
+            <tr><td><span class="field-name">is_used</span></td><td class="field-type">BOOLEAN</td><td class="field-desc">One-time consumption flag</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Module 2: Patients -->
+      <div class="entity-card" data-module="2">
+        <div class="entity-card-header mod-2">
+          <div class="entity-title">PATIENTS</div>
+          <span class="entity-tag">Module 2: Patient</span>
+        </div>
+        <table class="entity-table">
+          <thead>
+            <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="field-name">patient_id</span><span class="badge-pk">PK</span></td><td class="field-type">UUID</td><td class="field-desc">Unique identifier</td></tr>
+            <tr><td><span class="field-name">user_id</span><span class="badge-fk">FK</span><span class="badge-unique">1:1</span></td><td class="field-type">UUID</td><td class="field-desc">References USERS (Unique)</td></tr>
+            <tr><td><span class="field-name">first_name</span></td><td class="field-type">VARCHAR(100)</td><td class="field-desc">Legal first name</td></tr>
+            <tr><td><span class="field-name">last_name</span></td><td class="field-type">VARCHAR(100)</td><td class="field-desc">Legal last name</td></tr>
+            <tr><td><span class="field-name">date_of_birth</span></td><td class="field-type">DATE</td><td class="field-desc">Patient birthdate</td></tr>
+            <tr><td><span class="field-name">blood_group</span></td><td class="field-type">VARCHAR(5)</td><td class="field-desc">e.g. 'O+', 'A+', 'B-'</td></tr>
+            <tr><td><span class="field-name">emergency_contact</span></td><td class="field-type">VARCHAR(20)</td><td class="field-desc">Emergency phone number</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Module 3: Doctors -->
+      <div class="entity-card" data-module="3">
+        <div class="entity-card-header mod-3">
+          <div class="entity-title">DOCTORS</div>
+          <span class="entity-tag">Module 3: Doctor</span>
+        </div>
+        <table class="entity-table">
+          <thead>
+            <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="field-name">doctor_id</span><span class="badge-pk">PK</span></td><td class="field-type">UUID</td><td class="field-desc">Unique identifier</td></tr>
+            <tr><td><span class="field-name">user_id</span><span class="badge-fk">FK</span><span class="badge-unique">1:1</span></td><td class="field-type">UUID</td><td class="field-desc">References USERS (Unique)</td></tr>
+            <tr><td><span class="field-name">specialization</span></td><td class="field-type">VARCHAR(150)</td><td class="field-desc">e.g. 'Cardiologist'</td></tr>
+            <tr><td><span class="field-name">qualification</span></td><td class="field-type">VARCHAR(255)</td><td class="field-desc">e.g. 'MBBS, MD'</td></tr>
+            <tr><td><span class="field-name">consultation_fee</span></td><td class="field-type">NUMERIC(10,2)</td><td class="field-desc">Fee per booking session</td></tr>
+            <tr><td><span class="field-name">rating_avg</span></td><td class="field-type">NUMERIC(3,2)</td><td class="field-desc">Doctor discovery filter</td></tr>
+            <tr><td><span class="field-name">total_reviews</span></td><td class="field-type">INT</td><td class="field-desc">Count of patient reviews</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Module 4: Availability Slots -->
+      <div class="entity-card" data-module="4">
+        <div class="entity-card-header mod-4">
+          <div class="entity-title">DOCTOR_AVAILABILITY_SLOTS</div>
+          <span class="entity-tag">Module 4: Availability</span>
+        </div>
+        <table class="entity-table">
+          <thead>
+            <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="field-name">slot_id</span><span class="badge-pk">PK</span></td><td class="field-type">UUID</td><td class="field-desc">Parent slot identifier</td></tr>
+            <tr><td><span class="field-name">doctor_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">References DOCTORS (1:N)</td></tr>
+            <tr><td><span class="field-name">slot_date</span></td><td class="field-type">DATE</td><td class="field-desc">Scheduled calendar date</td></tr>
+            <tr><td><span class="field-name">start_time</span></td><td class="field-type">TIME</td><td class="field-desc">Daily shift start time</td></tr>
+            <tr><td><span class="field-name">end_time</span></td><td class="field-type">TIME</td><td class="field-desc">Daily shift end time</td></tr>
+            <tr><td><span class="field-name">slot_duration_minutes</span></td><td class="field-type">INT</td><td class="field-desc">Slot interval (default 30)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Module 4: Time Slots -->
+      <div class="entity-card" data-module="4">
+        <div class="entity-card-header mod-4">
+          <div class="entity-title">TIME_SLOTS</div>
+          <span class="entity-tag">Module 4: Availability</span>
+        </div>
+        <table class="entity-table">
+          <thead>
+            <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="field-name">time_id</span><span class="badge-pk">PK</span></td><td class="field-type">UUID</td><td class="field-desc">Granular time slot ID</td></tr>
+            <tr><td><span class="field-name">slot_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">References AVAILABILITY (1:N)</td></tr>
+            <tr><td><span class="field-name">start_time</span></td><td class="field-type">TIME</td><td class="field-desc">e.g. '09:00:00'</td></tr>
+            <tr><td><span class="field-name">end_time</span></td><td class="field-type">TIME</td><td class="field-desc">e.g. '09:30:00'</td></tr>
+            <tr><td><span class="field-name">status</span></td><td class="field-type">ENUM</td><td class="field-desc">'AVAILABLE' | 'BOOKED'</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Module 5: Appointments -->
+      <div class="entity-card" data-module="5">
+        <div class="entity-card-header mod-5">
+          <div class="entity-title">APPOINTMENTS</div>
+          <span class="entity-tag">Module 5: Appointment</span>
+        </div>
+        <table class="entity-table">
+          <thead>
+            <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="field-name">appointment_id</span><span class="badge-pk">PK</span></td><td class="field-type">UUID</td><td class="field-desc">Unique identifier</td></tr>
+            <tr><td><span class="field-name">patient_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">References PATIENTS (N:1)</td></tr>
+            <tr><td><span class="field-name">doctor_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">References DOCTORS (N:1)</td></tr>
+            <tr><td><span class="field-name">time_id</span><span class="badge-fk">FK</span><span class="badge-unique">1:1</span></td><td class="field-type">UUID</td><td class="field-desc">Unique slot lock (No double-booking)</td></tr>
+            <tr><td><span class="field-name">appointment_date</span></td><td class="field-type">DATE</td><td class="field-desc">Confirmed date</td></tr>
+            <tr><td><span class="field-name">status</span></td><td class="field-type">ENUM</td><td class="field-desc">'CONFIRMED' | 'CANCELLED'</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Module 5: Reschedule History -->
+      <div class="entity-card" data-module="5">
+        <div class="entity-card-header mod-5">
+          <div class="entity-title">RESCHEDULE_HISTORIES</div>
+          <span class="entity-tag">Module 5: Appointment</span>
+        </div>
+        <table class="entity-table">
+          <thead>
+            <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="field-name">reschedule_id</span><span class="badge-pk">PK</span></td><td class="field-type">UUID</td><td class="field-desc">Audit entry ID</td></tr>
+            <tr><td><span class="field-name">appointment_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">References APPOINTMENTS (1:N)</td></tr>
+            <tr><td><span class="field-name">old_time_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">Previously occupied time slot</td></tr>
+            <tr><td><span class="field-name">new_time_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">Newly selected time slot</td></tr>
+            <tr><td><span class="field-name">reschedule_reason</span></td><td class="field-type">TEXT</td><td class="field-desc">Patient reason</td></tr>
+            <tr><td><span class="field-name">rescheduled_at</span></td><td class="field-type">TIMESTAMP</td><td class="field-desc">Audit timestamp</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Module 5: Notifications -->
+      <div class="entity-card" data-module="5">
+        <div class="entity-card-header mod-5">
+          <div class="entity-title">NOTIFICATIONS</div>
+          <span class="entity-tag">Module 5: Appointment</span>
+        </div>
+        <table class="entity-table">
+          <thead>
+            <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="field-name">notification_id</span><span class="badge-pk">PK</span></td><td class="field-type">UUID</td><td class="field-desc">Unique alert ID</td></tr>
+            <tr><td><span class="field-name">user_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">Recipient user</td></tr>
+            <tr><td><span class="field-name">appointment_id</span><span class="badge-fk">FK</span></td><td class="field-type">UUID</td><td class="field-desc">Associated appointment</td></tr>
+            <tr><td><span class="field-name">type</span></td><td class="field-type">ENUM</td><td class="field-desc">'CONFIRMATION' | 'REMINDER'</td></tr>
+            <tr><td><span class="field-name">message</span></td><td class="field-type">TEXT</td><td class="field-desc">System trigger notification copy</td></tr>
+            <tr><td><span class="field-name">is_read</span></td><td class="field-type">BOOLEAN</td><td class="field-desc">User acknowledgment status</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- Cardinalities & Business Rules Matrix -->
+    <section class="section-card">
+      <h3>
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+        Weekly Plan Relationship Requirements Mapping
+      </h3>
+      <table class="cardinality-table">
+        <thead>
+          <tr>
+            <th>Relationship</th>
+            <th>Cardinality</th>
+            <th>Weekly Plan Requirement</th>
+            <th>Implementation & Constraint Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Users &harr; Patients</strong></td>
+            <td><span class="cardinality-tag">1 : 1</span></td>
+            <td>Week 1: Role-based Onboarding (Patient)</td>
+            <td><code>user_id</code> unique foreign key prevents multiple profiles per user account.</td>
+          </tr>
+          <tr>
+            <td><strong>Users &harr; Doctors</strong></td>
+            <td><span class="cardinality-tag">1 : 1</span></td>
+            <td>Week 1: Role-based Onboarding (Doctor)</td>
+            <td>Decoupled auth credentials from clinical and rating metadata.</td>
+          </tr>
+          <tr>
+            <td><strong>Doctor &harr; Slot</strong></td>
+            <td><span class="cardinality-tag">1 : N</span></td>
+            <td>Week 2: Doctor &harr; Slot (1:N)</td>
+            <td>Doctor configures multiple daily shift intervals in <code>doctor_availability_slots</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Slot &harr; Time</strong></td>
+            <td><span class="cardinality-tag">1 : N</span></td>
+            <td>Week 2: Slot &harr; Time (1:N)</td>
+            <td>Parent slot automatically partitions into 30-min bookable rows in <code>time_slots</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Appointment &harr; Patient</strong></td>
+            <td><span class="cardinality-tag">N : 1</span></td>
+            <td>Week 2: Appointment &harr; Patient (N:1)</td>
+            <td>Patients can book multiple consultations over time.</td>
+          </tr>
+          <tr>
+            <td><strong>Appointment &harr; Doctor</strong></td>
+            <td><span class="cardinality-tag">N : 1</span></td>
+            <td>Week 2: Appointment &harr; Doctor (N:1)</td>
+            <td>Doctors conduct consultations for multiple patients.</td>
+          </tr>
+          <tr>
+            <td><strong>Appointment &harr; Time Slot</strong></td>
+            <td><span class="cardinality-tag">1 : 1</span></td>
+            <td>Week 2: Booking concurrency lock</td>
+            <td>Unique constraint on <code>time_id</code> eliminates double booking race conditions.</td>
+          </tr>
+          <tr>
+            <td><strong>Appointment &harr; RescheduleHistory</strong></td>
+            <td><span class="cardinality-tag">1 : N</span></td>
+            <td>Week 3: Appointment &harr; RescheduleHistory (1:N)</td>
+            <td>Preserves full timeline of previous slot, new slot, reason, and initiator.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Schema Code Preview Section -->
+    <section class="section-card" style="position: relative;">
+      <h3>
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+        PostgreSQL 3NF DDL Schema Preview
+      </h3>
+      <button class="copy-code-btn" id="copyCodeSnippetBtn">Copy DDL</button>
+      <pre><code>-- PearlThoughts Schedule Project Module (PostgreSQL 3NF)
+CREATE TABLE users (
+    user_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone VARCHAR(20) UNIQUE,
+    password_hash VARCHAR(255),
+    role user_role_enum NOT NULL DEFAULT 'PATIENT',
+    auth_provider auth_provider_enum NOT NULL DEFAULT 'LOCAL',
+    google_id VARCHAR(255) UNIQUE,
+    is_verified BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE patients (
+    patient_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL UNIQUE REFERENCES users(user_id) ON DELETE CASCADE,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    date_of_birth DATE,
+    blood_group VARCHAR(5)
+);
+
+CREATE TABLE doctors (
+    doctor_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL UNIQUE REFERENCES users(user_id) ON DELETE CASCADE,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    specialization VARCHAR(150) NOT NULL,
+    consultation_fee NUMERIC(10, 2) NOT NULL,
+    rating_avg NUMERIC(3, 2) NOT NULL DEFAULT 5.00
+);
+
+-- Doctor ↔ Slot (1:N) & Slot ↔ Time (1:N)
+CREATE TABLE doctor_availability_slots (
+    slot_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    doctor_id UUID NOT NULL REFERENCES doctors(doctor_id) ON DELETE CASCADE,
+    slot_date DATE NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL
+);
+
+CREATE TABLE time_slots (
+    time_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    slot_id UUID NOT NULL REFERENCES doctor_availability_slots(slot_id) ON DELETE CASCADE,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    status time_slot_status_enum NOT NULL DEFAULT 'AVAILABLE'
+);
+
+-- Appointment ↔ Patient (N:1), Doctor (N:1), TimeSlot (1:1)
+CREATE TABLE appointments (
+    appointment_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    patient_id UUID NOT NULL REFERENCES patients(patient_id),
+    doctor_id UUID NOT NULL REFERENCES doctors(doctor_id),
+    time_id UUID NOT NULL UNIQUE REFERENCES time_slots(time_id),
+    appointment_date DATE NOT NULL,
+    status appointment_status_enum NOT NULL DEFAULT 'CONFIRMED'
+);
+
+-- Appointment ↔ RescheduleHistory (1:N)
+CREATE TABLE reschedule_histories (
+    reschedule_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    appointment_id UUID NOT NULL REFERENCES appointments(appointment_id) ON DELETE CASCADE,
+    old_time_id UUID NOT NULL REFERENCES time_slots(time_id),
+    new_time_id UUID NOT NULL REFERENCES time_slots(time_id),
+    reschedule_reason TEXT,
+    rescheduled_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+    </section>
+
+  </main>
+
+  <!-- Floating Loom Video Teleprompter / Script Drawer -->
+  <aside class="teleprompter-drawer" id="teleprompterDrawer">
+    <div class="teleprompter-header">
+      <h4>
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="#625df5"></circle>
+          <polygon points="10 8 16 12 10 16" fill="white"></polygon>
+        </svg>
+        Loom Recording Prompter
+      </h4>
+      <button class="close-drawer-btn" id="closeDrawerBtn">&times;</button>
+    </div>
+    <div class="teleprompter-body">
+      
+      <div class="script-section">
+        <div class="script-time">[0:00 - 0:30] &bull; Introduction</div>
+        <div class="script-cue">Point to title & show your webcam bubble</div>
+        <p class="script-text">"Hello everyone, I am an engineering intern at PearlThoughts. Today, I'm presenting the <b>ER Diagram for the Schedule Project Module</b> based strictly on our Weekly Plans document. It covers all 5 requested modules in order: User, Patient, Doctor, Availability, and Appointment."</p>
+      </div>
+
+      <div class="script-section">
+        <div class="script-time">[0:30 - 1:15] &bull; Modules 1 & 2</div>
+        <div class="script-cue">Hover over USERS, USER_VERIFICATIONS, and PATIENTS</div>
+        <p class="script-text">"In <b>Module 1 (User Module)</b>, our central <code>USERS</code> entity handles local and <b>Google OAuth login</b> with role-based segregation for Patients and Doctors, protected by OTP verification in <code>USER_VERIFICATIONS</code>. In <b>Module 2 (Patient Module)</b>, the <code>PATIENTS</code> entity extends Users in a strict <b>1:1 relationship</b>, isolating clinical demographics for privacy."</p>
+      </div>
+
+      <div class="script-section">
+        <div class="script-time">[1:15 - 1:55] &bull; Module 3 (Doctor)</div>
+        <div class="script-cue">Hover over DOCTORS table</div>
+        <p class="script-text">"In <b>Module 3 (Doctor Module)</b>, doctors also link <b>1:1 with Users</b>. It holds credentials like <code>specialization</code>, <code>consultation_fee</code>, and <code>rating_avg</code>, enabling patients to locate doctors by specialty, ratings, and availability."</p>
+      </div>
+
+      <div class="script-section">
+        <div class="script-time">[1:55 - 2:45] &bull; Module 4 (Availability)</div>
+        <div class="script-cue">Point at DOCTOR_AVAILABILITY_SLOTS &harr; TIME_SLOTS</div>
+        <p class="script-text">"<b>Module 4 (Availability Module)</b> implements the mandated <b>Doctor &harr; Slot (1:N)</b> and <b>Slot &harr; Time (1:N)</b> hierarchy. Doctors configure date shifts in <code>DOCTOR_AVAILABILITY_SLOTS</code>, which break down into granular 30-minute bookable rows in <code>TIME_SLOTS</code> with status tracking to prevent double booking."</p>
+      </div>
+
+      <div class="script-section">
+        <div class="script-time">[2:45 - 3:35] &bull; Module 5 (Appointment)</div>
+        <div class="script-cue">Hover over APPOINTMENTS, RESCHEDULE_HISTORIES & NOTIFICATIONS</div>
+        <p class="script-text">"<b>Module 5 (Appointment Module)</b> connects Patient (N:1) and Doctor (N:1) with a <b>unique 1:1 lock</b> on Time Slot. For Week 3, <code>RESCHEDULE_HISTORIES</code> tracks every reschedule event (1:N). Automated <code>NOTIFICATIONS</code> deliver the required confirmation: <i>'Your appointment with Dr. XYZ is confirmed'</i>."</p>
+      </div>
+
+      <div class="script-section warning">
+        <div class="script-time">[3:35 - 4:00] &bull; Conclusion</div>
+        <div class="script-cue">Zoom out to full diagram view & wrap up</div>
+        <p class="script-text">"In summary, our schema is normalized in 3NF, free of double-booking vulnerabilities, and ready for our NestJS backend. Thank you for watching!"</p>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer>
+    <p>PearlThoughts Engineering Internship &bull; Schedule Project Module Submission &bull; Designed in 3NF</p>
+  </footer>
+
+  <script>
+    // Initialize Mermaid with clean dark theme
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        darkMode: true,
+        background: '#0d131f',
+        primaryColor: '#1e293b',
+        primaryTextColor: '#f8fafc',
+        primaryBorderColor: '#38bdf8',
+        lineColor: '#60a5fa',
+        secondaryColor: '#0f172a',
+        tertiaryColor: '#1e1e38'
+      }
+    });
+
+    // Module Filtering Logic
+    const moduleTabs = document.querySelectorAll('.module-tab');
+    const entityCards = document.querySelectorAll('.entity-card');
+
+    moduleTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        moduleTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const mod = tab.getAttribute('data-mod');
+        entityCards.forEach(card => {
+          if (mod === 'all' || card.getAttribute('data-module') === mod) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Loom Teleprompter Drawer Toggle
+    const teleprompterDrawer = document.getElementById('teleprompterDrawer');
+    const openTeleprompterBtn = document.getElementById('openTeleprompterBtn');
+    const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+
+    openTeleprompterBtn.addEventListener('click', () => {
+      teleprompterDrawer.classList.toggle('open');
+    });
+
+    closeDrawerBtn.addEventListener('click', () => {
+      teleprompterDrawer.classList.remove('open');
+    });
+
+    // Zoom Controls for Diagram
+    let currentScale = 1;
+    const mermaidWrapper = document.getElementById('mermaidWrapper');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const resetZoomBtn = document.getElementById('resetZoomBtn');
+
+    zoomInBtn.addEventListener('click', () => {
+      currentScale += 0.15;
+      updateZoom();
+    });
+
+    zoomOutBtn.addEventListener('click', () => {
+      if (currentScale > 0.4) {
+        currentScale -= 0.15;
+        updateZoom();
+      }
+    });
+
+    resetZoomBtn.addEventListener('click', () => {
+      currentScale = 1;
+      updateZoom();
+    });
+
+    function updateZoom() {
+      const svg = mermaidWrapper.querySelector('svg');
+      if (svg) {
+        svg.style.transform = `scale(${currentScale})`;
+        svg.style.transformOrigin = 'center top';
+        svg.style.transition = 'transform 0.2s ease';
+      }
+    }
+
+    // Copy SQL Schema action
+    document.getElementById('copySqlBtn').addEventListener('click', () => {
+      fetch('database_schema.sql')
+        .then(res => res.text())
+        .then(text => {
+          navigator.clipboard.writeText(text);
+          alert('Database SQL schema copied to clipboard!');
+        })
+        .catch(() => {
+          alert('Open database_schema.sql directly to copy.');
+        });
+    });
+
+    // View Switcher (Flow vs Mermaid)
+    const viewFlowBtn = document.getElementById('viewFlowBtn');
+    const viewMermaidBtn = document.getElementById('viewMermaidBtn');
+    const visualFlowWrapper = document.getElementById('visualFlowWrapper');
+
+    viewFlowBtn.addEventListener('click', () => {
+      viewFlowBtn.classList.add('active');
+      viewMermaidBtn.classList.remove('active');
+      visualFlowWrapper.style.display = 'flex';
+      mermaidWrapper.style.display = 'none';
+    });
+
+    viewMermaidBtn.addEventListener('click', () => {
+      viewMermaidBtn.classList.add('active');
+      viewFlowBtn.classList.remove('active');
+      visualFlowWrapper.style.display = 'none';
+      mermaidWrapper.style.display = 'flex';
+    });
+
+    document.getElementById('copyCodeSnippetBtn').addEventListener('click', () => {
+      const code = document.querySelector('pre code').innerText;
+      navigator.clipboard.writeText(code);
+      alert('DDL snippet copied to clipboard!');
+    });
+  </script>
+</body>
+</html>
