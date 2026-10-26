@@ -1,0 +1,80 @@
+erDiagram
+    USER ||--o| PATIENT : "extends (1:1)"
+    USER ||--o| DOCTOR : "extends (1:1)"
+    USER ||--o{ USER_VERIFICATION : "authenticates (1:N)"
+
+    PATIENT ||--o{ APPOINTMENT : "books (1:N)"
+    DOCTOR ||--o{ AVAILABILITY : "schedules (1:N)"
+    DOCTOR ||--o{ APPOINTMENT : "attends (1:N)"
+
+    AVAILABILITY ||--o| APPOINTMENT : "locks slot (1:1)"
+    APPOINTMENT ||--o{ RESCHEDULE_HISTORY : "tracks (1:N)"
+
+    USER {
+        uuid user_id PK "Primary Key"
+        string name "Full Name"
+        string email UK "Unique Login"
+        string password_hash "Hashed Secret"
+        string role "PATIENT or DOCTOR"
+        string auth_provider "LOCAL or GOOGLE"
+        boolean is_verified "Identity Status"
+    }
+
+    USER_VERIFICATION {
+        uuid verification_id PK "Primary Key"
+        uuid user_id FK "References USER"
+        string otp_code "6-Digit Code"
+        string token_type "REGISTRATION"
+        timestamp expires_at "Expiration Stamp"
+    }
+
+    PATIENT {
+        uuid patient_id PK "Primary Key"
+        uuid user_id FK "1:1 Unique Key"
+        string first_name "First Name"
+        string last_name "Last Name"
+        date date_of_birth "Birth Date"
+        string gender "Gender"
+        string phone "Contact Number"
+        string address "Home Address"
+    }
+
+    DOCTOR {
+        uuid doctor_id PK "Primary Key"
+        uuid user_id FK "1:1 Unique Key"
+        string specialization "Clinical Specialty"
+        string qualification "Degrees"
+        int experience_years "Years Active"
+        decimal consultation_fee "Fee per Session"
+        decimal rating_avg "Average Rating"
+        string phone "Work Phone"
+    }
+
+    AVAILABILITY {
+        uuid availability_id PK "Primary Key"
+        uuid doctor_id FK "References DOCTOR"
+        date available_date "Calendar Date"
+        time start_time "Start Time"
+        time end_time "End Time"
+        string status "AVAILABLE or BOOKED"
+    }
+
+    APPOINTMENT {
+        uuid appointment_id PK "Primary Key"
+        uuid patient_id FK "References PATIENT"
+        uuid doctor_id FK "References DOCTOR"
+        uuid availability_id FK "1:1 Unique Slot Lock"
+        date appointment_date "Scheduled Date"
+        string reason "Chief Complaint"
+        string status "CONFIRMED or CANCELLED"
+        timestamp created_at "Created Stamp"
+    }
+
+    RESCHEDULE_HISTORY {
+        uuid reschedule_id PK "Primary Key"
+        uuid appointment_id FK "References APPOINTMENT"
+        uuid old_availability_id FK "Previous Slot"
+        uuid new_availability_id FK "New Slot"
+        string reschedule_reason "Reason for Change"
+        timestamp rescheduled_at "Audit Stamp"
+    }
